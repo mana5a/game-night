@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game Of Life</title>
+	<style type="text/css">
+		body{
+			font-family: "Times New Roman",sans-serif;
+		}
+
+		table{	
+			display: inline;
+		}
+		td{
+			height: 25px;
+			width: 25px;
+		}
+		.on{
+			background-color: purple;
+		}
+		.off{
+			background-color: #ddd;
+		}
+		#start,#reset,#trace_back{
+			border:1px black solid;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			margin-top: 5px;
+			width: 150px;
+			font-size: 20px;
+		}
+		div{
+
+			font-size: 30px;
+			text-align: center;
+		}
+		h1{
+			text-align: center;
+		}
+		#right{
+			float: right;
+			margin-right: 5%;
+		}
+		#slider{
+			width: 200px;
+			height: 50px;
+		}
+	</style>
+</head>
+<body>
+	
+
+	<table id="main">
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+		<tr>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+			<td class="off"></td>
+		</tr>
+
+	</table>
+
+	
+	<div id="right">
+		<h1 id="h1">Conway's Game Of Life</h1>
+		<button id="start">Start</button>
+		<button id="reset">Reset</button>
+		<button id="trace_back">Trace Back</button>
+		<div>Generation:<span id="count">0</span></div>
+		<input type="range" list="tickmarks" id="slider" max="20" min="1" />
+		<datalist id="tickmarks">
+			<option value="1">
+			<option value="5">
+			<option value="10">
+			<option value="15">
+			<option value="20">	
+		</datalist>
+
+	</div>
+</body>
+
+<script>
+	
+var ran = document.getElementById("slider");
+ran.onchange=create_table;
+
+function create_table()
+{
+	if(running){
+		timer.stop();
+		remove();
+	}
+	var main1=document.getElementById("main");
+	document.body.removeChild(main1);
+	var slider=document.getElementById("slider");
+	var n=slider.value;
+	var val=n;
+	row=n;
+	col=n;
+	var table=document.createElement("table");
+	table.id="main";
+	var table1=document.createElement("table");
+	table.appendChild(table1);
+	
+	
+	console.log("resize");
+	for(i=0;i<n;i++)
+	{
+		var tr=document.createElement("tr");
+		for(j=0;j<n;j++)
+		{
+			var td=document.createElement("td");
+			td.className="off";
+			//console.log(td.className);
+			tr.appendChild(td);
+		}	
+		table1.appendChild(tr);
+	}
+	h1=document.getElementById("h1");
+	document.body.appendChild(table);
+	add();
+}
+
+
+var val=document.getElementById("slider").value;
+var row=val;
+var col=val;
+function stack()
+{
+	this.arr=[];
+	this.top=-1;
+	this.setarr= function()
+	{
+		var board= document.getElementById("main");
+		var r=new Array(row)
+		for(var i=0;i<row;i++)
+		{
+			var ele=new Array(col);
+			for(var j=0;j<col;j++)
+			{
+				if(board.children[0].children[i].children[j].className=="off")
+					ele[j]=0;
+				else
+					ele[j]=1;
+			}
+			r[i]=ele;
+		}
+		this.push(r);
+//		console.log(this.arr);
+	}
+	this.push= function(x)
+	{
+		this.top=this.top+1;
+		this.arr[this.top]=x;
+	}
+
+	this.pop= function()
+	{
+		var x=this.arr[this.top];
+		this.top=this.top-1;
+		return x;
+	}
+}
+
+var st=new stack();
+
+function update_board()
+{
+//	console.log("update");
+	if(st.top==-1)
+	{
+		console.log(st.top==-1);
+		st.setarr();
+	}
+	var i,j;
+	var board= document.getElementById("main");
+	var m=calc_neighbours();
+	var r=new Array(row);
+	for(i=0;i<row;i++)
+	{
+		var ele= new Array(col);
+		for(j=0;j<col;j++)
+		{
+			var neighbours=m[i][j];	
+//			console.log(board.children[0].children[i].children[j]);
+			if((neighbours<2)&&(board.children[0].children[i].children[j].className=="on"))
+			{
+				board.children[0].children[i].children[j].className="off";
+				ele[j]=0;
+//				console.log("underpopulation.");
+			}
+			else if	((neighbours>3)&&(board.children[0].children[i].children[j].className=="on"))
+			{
+				board.children[0].children[i].children[j].className="off";
+				ele[j]=0;
+//				console.log("overpopulation.");
+			}
+			else if((neighbours==3)&&(board.children[0].children[i].children[j].className=="off"))
+			{
+				board.children[0].children[i].children[j].className="on";
+				ele[j]=1;
+//				console.log("alive.")
+			}
+			else if(board.children[0].children[i].children[j].className=="off")
+				ele[j]=0;
+			else
+				ele[j]=1;
+		}
+		r[i]=ele;
+	}
+	st.push(r);
+	console.log(st.arr.length, st.top);
+}
+
+function calc_neighbours()
+{
+	var m=new Array(row);
+	for(var a=0;a<row;a++)
+	{
+		m[a]=new Array(col);
+		for (var b=0;b<col;b++)
+			m[a][b]=0;
+	}
+	var board= document.getElementById("main");
+	for(var i=0;i<row;i++)
+	{
+		for (var j=0; j < col; j++) 
+		{
+			var x=i;
+			var y=j;
+			if (j-1 < 0)
+		        y = row - 1;
+		    else
+		        y = j - 1;
+		    if (board.children[0].children[i].children[y].className == "on")
+		    	m[i][j]++;
+		    
+		    if (j+1 >= row)
+		        y = 0;
+		    else
+		        y = j + 1;
+		    if (board.children[0].children[i].children[y].className == "on")
+		    	m[i][j]++;
+		    
+		    if (i-1 < 0)
+		        x = col - 1;
+		    else
+		        x = i - 1;
+		    if (board.children[0].children[x].children[j].className == "on")
+		    	m[i][j]++;
+		    
+		    if (i+1 >= col)
+		        x = 0;
+		    else
+		        x = i + 1;
+		    if (board.children[0].children[x].children[j].className == "on")
+		    	m[i][j]++;
+		    
+		    if (j-1 < 0)
+		        y = row - 1;
+		    else
+		        y = j - 1;
+		    if (i-1 < 0)
+		        x = col - 1;
+		    else
+		        x = i - 1;
+		    if (board.children[0].children[x].children[y].className == "on") 
+		    	m[i][j]++;
+		    if (i+1 >= col)
+		        x = 0;
+		    else
+		        x = i + 1;
+		    if (board.children[0].children[x].children[y].className == "on")
+		    	m[i][j]++;
+		    if (j+1 >= row)
+		        y = 0;
+		    else
+		        y = j + 1;
+		    if (i+1 >= col)
+		        x = 0;
+		    else
+		        x = i + 1;
+		    if (board.children[0].children[x].children[y].className == "on")
+		    	m[i][j]++;
+		    if (i-1 < 0)
+		        x = col - 1;
+		    else
+		        x = i - 1;
+		    if (board.children[0].children[x].children[y].className == "on")
+		    	m[i][j]++;
+		}
+	}
+    return m;
+}
+
+
+function add()
+{
+	var board=document.getElementById("main");
+	for(var i=0;i<row;i++)
+	{
+		for(var j=0;j<col;j++)
+		{
+			//console.log(board);
+			board.children[0].children[i].children[j].addEventListener("click",select,false);
+		}
+	}
+}
+
+function remove()
+{
+	var board=document.getElementById("main");
+	for(var i=0;i<row;i++)
+	{
+		for(var j=0;j<col;j++)
+		{
+			board.children[0].children[i].children[j].removeEventListener("click",select,false);
+		}
+	}	
+}
+
+function select(e){
+	console.log(e.target);
+	if(e.target.className=="on")
+		e.target.className="off";
+	else
+		e.target.className="on";
+}
+
+
+
+//var button = document.getElementById("st");
+var c=document.getElementById("count");
+var running = false;
+var count =0;
+
+function dead() {
+	var board=document.getElementById("main");
+	for(var i=0;i<row;i++)
+	{
+		for(var j=0;j<col;j++)
+		{
+			if(board.children[0].children[i].children[j].className=="on")
+				return 0;
+		}
+	}
+	console.log("dead");
+	return 1;
+}
+
+var timer = new DeltaTimer(function () {
+  update_board();
+  count++;
+  c.innerHTML=count;
+  if(dead())
+  {
+  	add();
+  	timer.stop();
+  	start.innerHTML = "Start";
+    running = false;
+  }
+}, 500);
+
+start.addEventListener("click", function () {
+
+  if (running) {
+  	add();
+    timer.stop();
+    start.innerHTML = "Start";
+    running = false;
+  } 
+  else {
+  	remove();
+    timer.start();
+    start.innerHTML = "Stop";
+    running = true;
+  }
+});
+
+function DeltaTimer(render, interval) {
+    var timeout;
+    var lastTime;
+
+    this.start = start;
+    this.stop = stop;
+
+    function start() {
+        timeout = setTimeout(loop, 0);
+        lastTime = Date.now();
+        return lastTime;
+    }
+
+    function stop() {
+        clearTimeout(timeout);
+        return lastTime;
+    }
+
+    function loop() {
+        var thisTime = Date.now();
+        var deltaTime = thisTime - lastTime;
+        var delay = Math.max(interval - deltaTime, 0);
+        timeout = setTimeout(loop, delay);
+        lastTime = thisTime + delay;
+        render(thisTime);
+    }
+}
+
+var re=document.getElementById("reset");
+re.addEventListener("click", reset,false);
+function reset(){
+	var board=document.getElementById("main");
+	for(var i=0;i<row;i++)
+	{
+		for(var j=0;j<col;j++)
+		{
+			board.children[0].children[i].children[j].className="off";
+		}
+	}
+	count=0;
+	c.innerHTML=0;
+	st.arr=[];
+	st.top=-1;
+}
+
+var tb=document.getElementById("trace_back");
+tb.addEventListener("click", function(){
+	if ( st.top==st.arr.length-1)
+		st.pop();
+
+	if (running ) {
+	  	add();
+    	timer2.stop();
+    	tb.innerHTML = "Trace back";
+    	running = false;
+  	} 
+  	else {
+  		remove();
+   		timer2.start();
+    	tb.innerHTML = "Pause";
+    	running = true;
+  	}
+}, false);
+function trace_back(){
+	var board=document.getElementById("main");
+	
+	var x=st.pop();
+	console.log(st.arr.length,st.top);
+	for( var i=0;i<col;i++)
+	{
+		for (var j=0;j<row;j++)
+		{
+			if(x[i][j]==0)
+			{
+				board.children[0].children[i].children[j].className="off";
+			}
+			else
+			{
+				board.children[0].children[i].children[j].className="on";
+			}
+		}
+	}
+}
+
+var timer2 = new DeltaTimer(function () {
+  count--;
+  trace_back();
+  c.innerHTML=st.top+1;
+  if(st.top==-1)
+  {
+  	add();
+  	timer2.stop();
+  	tb.innerHTML = "Trace back";
+    running = false;
+  }
+}, 500);
+
+add();
+</script>
+	
+</html>
