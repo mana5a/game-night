@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			@font-face{
+				font-family:cutenotes;
+				src:url(FunSized.ttf);
+			}
+			#size1,#size2,#size3{
+				display:block;
+				width:100px;
+			}
+			#title{
+				position:absolute;
+				left:550px;
+				top:10px;
+				font-size:300%;
+				font-family:cutenotes;
+				letter-spacing: 8px;
+				margin: 0 !important;
+				padding: 0 !important;
+			}
+			body{
+				background-color:#ffaa11;
+				background-image:url("paint.png");
+				background-repeat:no-repeat;
+			}
+			#toolbar{
+				background-color:rgba(250,190,20,0.7);
+				width:100px;
+				height:550px;
+				position:absolute;
+				top:70px;
+				border:2px dashed black;
+				box-shadow:-2px 2px 2px black;
+			}
+			#can{
+				position:absolute;
+				left:122px;
+				top:70px;
+				background-color:rgba(250,250,250,0.5);
+				box-shadow:-2px 2px 2px black;
+			}
+			#er,#clear{
+				background-color:white;
+				height:50px;
+				width:50px;
+				
+			}
+			#line{
+				background-color:black;
+				width:50px;
+				height:5px;
+			}
+		</style>
+	</head>
+	<body>
+	<h1 id="title">Paint!</h1>
+	<div id="app">
+		<div id="toolbar">
+			<center>
+			<p> Brush</p>
+			<input type="color" id="pick1" default="black">
+			<input type="range" min="10" max="200" id="size1" default="50">
+			<div id="brush"> </div>
+			<br/>
+			<br/>
+			<p> Eraser </p>
+			<input type="range" min="10" max="200" id="size2" default="50">
+			<div id="er"> Erase </div>
+			<br/>
+			<br/>
+			<p>Line</p>
+			<input type="color" id="pick3" default="black">
+			<input type="range" min="10" max="200" id="size3" default="50">
+			<div id="line"> </div>
+			<br/>
+			<br/>
+			<p> Clear screen </p>
+			<div id="clear"> X </div>
+			</center>
+		</div>
+		<canvas id="can" height="550" width="1225" style="border:1px solid #000000; float:right;">
+		</canvas>
+	</div>
+	</body>
+	<script>
+		var canvas=document.getElementById("can");
+		canvas.style.border="2px dashed black";
+		var ctx = canvas.getContext("2d");
+		var pick1=document.getElementById("pick1");
+		//var pick2=document.getElementById("pick2");
+		var pick3=document.getElementById("pick3");
+		pick3.addEventListener("input",change_val,false);
+		
+		var clr=document.getElementById("clear");
+		clear.addEventListener("click",clear_screen,false);
+		function clear_screen(){
+			ctx.clearRect(0,0,1347,620);
+		}
+		function change_val(e){
+			console.log("changes");
+			ctx.closePath();
+			ctx.strokeStyle=e.target.value;
+			ctx.beginPath();
+		}
+		
+		var size1=document.getElementById("size1");
+		
+		var size2=document.getElementById("size2");
+		size2.addEventListener("input",change_size2,false);
+		function change_size2(e){
+			ctx.closePath();
+			console.log("smol er");
+			ctx.lineWidth=e.target.value;
+			ctx.beginPath();
+		}
+		
+		var size3=document.getElementById("size3");
+		size3.addEventListener("input",change_size,false);
+		function change_size(e){
+			ctx.closePath();
+			ctx.lineWidth=e.target.value;
+			ctx.beginPath();
+		}
+		
+		//console.log(pick.value);
+		
+		var line_draw=document.getElementById("line");
+		line_draw.addEventListener("click",l_d,false);
+		function l_d(e){
+			//ctx.globalCompositeOperation = "source-over";  
+			ctx.lineWidth =size3.value;
+			ctx.strokeStyle=pick3.value;
+			console.log("start");
+			canvas.addEventListener("click",start_line,false);
+			canvas.removeEventListener('mousedown',start, false);
+		}
+		function start_line(e){
+			ctx.closePath();
+			console.log("start pos");
+			console.log(e.offsetX,e.offsetY);
+			ctx.beginPath();
+			ctx.moveTo(e.offsetX,e.offsetY);
+			canvas.removeEventListener("click",start_line,false);
+			canvas.addEventListener("click",stop_line,false);
+		}
+		function stop_line(e){
+			console.log("stop pos");
+			console.log(e.offsetX,e.offsetY);
+			ctx.lineTo(e.offsetX,e.offsetY);
+			ctx.stroke();
+			canvas.removeEventListener("click",stop_line,false);
+			canvas.addEventListener("click",stop_line,false);
+			//ctx.closePath();
+		}
+				
+		
+		var mouse = {x: 0, y: 0};
+ 
+		var er=document.getElementById("er");
+		//console.log("erase1");
+		er.addEventListener('click',eraser,false);
+		function eraser(){ 
+			ctx.lineWidth=size2.value;
+			canvas.addEventListener('mousedown',start, false);
+			console.log("erase");			
+			ctx.strokeStyle = "rgba(0,0,0,0)";
+			ctx.globalCompositeOperation = "destination-out";  
+			//er.removeEventListener('click',eraser,false);
+			
+		}
+		
+		pick1.addEventListener('input',change,false);
+		function change(e){
+			console.log("draw again");
+			canvas.addEventListener('mousedown',start, false);
+			ctx.globalCompositeOperation = "source-over";  
+			ctx.strokeStyle=e.target.value;
+		}
+		
+		canvas.addEventListener('mousemove',position, false);		 
+		function position(e) {
+			//console.log(e);
+			mouse.x = e.offsetX;
+			mouse.y = e.offsetY;
+		}
+		
+		canvas.addEventListener('mousedown',start, false);
+		function start(e) {
+			ctx.beginPath();
+			ctx.moveTo(mouse.x, mouse.y);		 
+			canvas.addEventListener('mousemove',paint, false);
+		}
+		 
+		canvas.addEventListener('mouseup',stop, false);
+		function stop() {
+			canvas.removeEventListener('mousemove',paint, false);
+			
+		}
+		
+		function paint() {
+			ctx.lineJoin ='round';
+			ctx.lineCap ='round';
+			ctx.lineWidth =size1.value;
+			ctx.strokeStyle =pick1.value;
+			ctx.lineTo(mouse.x, mouse.y);
+			ctx.stroke();
+		}
+		
+		
+	</script>
+</html>
